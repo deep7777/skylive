@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-starter">
+    <body ng-controller="MainCtrl">
+    <div class="container">
+      <div style="float:right;">
+        <button type="button" ng-click="remindertask()" class="btn-info form-group">Add</button>
+      </div>
+      <table id="example" cellpadding="0" cellspacing="0" border="0" class="responsive table table-striped table-bordered">
+        <thead>
+        <tr>          
+          <th scope="col">Task</th>        
+          <th scope="col">Date</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>    
+        <? foreach ($this->list_results as $l) : ?>
+        <tr id="row_<?=$l['id']?>">          
+          <td><?=$l['rtask']?></td>
+          <td><?=$l['rdate']?></td>
+          <td align="right"><button type="button" id="<?=$l['id']?>" onclick="return delReminder('<?=$l["id"]?>')">Delete</button></td>
+        </tr>
+        <? endforeach; ?>
+        </tbody>
+    </table>
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    var display_length = 50;
+    var display_menu = [[10,50,100], [10,50,100]];
+    var idarr = [];
+    var oT = $('#example').dataTable({
+            "aLengthMenu": display_menu,
+            "iDisplayLength": display_length,
+             "aoColum,Defs": [
+                {"bVisible": false, "aTargets": [ 0 ] }
+            ],
+            "aaSorting": [],
+            "sDom": '<"top"ifl<"pagination pull-right"p><"clear">>rt<"bottom"<"pagination pull-right"p><"clear">>'
+    });
+});
+function delReminder(id){
+var rowid = "#row_"+id;
+var url = "/public/reminder/delreminder";
+$.post(url,{id:id}).done(function(response){
+$(rowid).remove();
+});
+
+return false;
+}
+var app = angular.module('angularjs-starter',[]);
+app.controller('MainCtrl', function($scope,$location,$http) {  
+  $scope.remindertask = function(){
+      window.location="/public/reminder/reminderform";
+  }
+});
+</script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<html ng-app='myApp'>
+<title>NEWS</title>
+<body ng-controller='NewsController'>
+<div id="view-content">
+	<ul style="display:block;">
+	<?php foreach ($this->news as $key => $value):?>
+	    <div style="border:1px thin grey;padding:2px;">
+        <li class="" style="list-style:none;">
+	    	<a title="<?=$this->news[$key]['description']?>" target="_blank" href="<?=$this->news[$key]['guid'];?>"><?=$this->news[$key]["title"];?></a>
+	    </li>	
+    </div>
+	<?php endforeach;?>
+    </ul>     
+</div>
+
+<script>
+  var myAppModule = angular.module('myApp', []);
+  myAppModule.controller('NewsController',function($scope,$http) {      
+      var someText = {};
+      $scope.news = '';  
+      $scope.ctitle = "Cricket News";        	  
+  });
+  
+</script>
+</body>
+</html>

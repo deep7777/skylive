@@ -1,0 +1,14 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+<p class="text-info text-right container"><?=strtoupper($this->logged_in_user);?></p>
+<div id="header">	
+	<div>
+		<?= $this->render('layouts/header.phtml') ?>
+	</div>
+</div>
+<div id="nav"><?= $this->render('layouts/nav.phtml') ?></div>
+<div id="content" class="container"><?= $this->layout()->content ?></div>
+<div id="footer"><?= $this->render('layouts/footer.phtml') ?></div>
+</body>
+</html>

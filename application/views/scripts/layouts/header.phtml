@@ -1,0 +1,43 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SKYDPK</title>
+<?php 
+$b3 = "/public/bootstrap3";
+$bootstrap2_csspath = "/public/bootstrap/css/";
+$b3_assets_csspath = $b3."/assets/css/";
+$b3_less=$b3."/less/navbar.less";
+$b3_dist_csspath = $b3."/dist/css/";
+$css_path = "/public/css/";
+$js_path = "/public/js/";
+
+
+$bootstrap3_jspath = $b3."/js/";
+$b3_cssfiles = array($b3_dist_csspath."bootstrap.min.css",$b3_dist_csspath."datepicker.css");
+$jsfiles = array("angular.js","jquery.dataTables.min.js");
+$bootstrap_jsfiles = array("transition.js","alert.js","modal.js",
+"scrollspy.js","tab.js",
+"tooltip.js","popover.js","button.js",
+"collapse.js","carousel.js","datepicker.js");
+$b3_jsfiles = array($b3."/assets/js/jquery.js",$b3."/dist/js/bootstrap.min.js");
+
+foreach ($b3_cssfiles as $value) {
+	
+  //echo $this->headLink()->appendStylesheet($value);
+}
+foreach ($b3_jsfiles as $value) {
+  echo $this->headScript()->appendFile($value);
+}
+foreach ($jsfiles as $value) {
+  echo $this->headScript()->appendFile($js_path.$value);
+}
+
+foreach ($bootstrap_jsfiles as $value) {
+  echo $this->headScript()->appendFile($bootstrap3_jspath.$value);
+}
+
+?>
+<?php foreach($b3_cssfiles as $value):?>
+	<link class="ctheme" type="text/css" rel="stylesheet" media="screen" href="<?php echo $value?>">
+<?php endforeach;?>
+
+</head>

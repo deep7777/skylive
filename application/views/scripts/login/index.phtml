@@ -1,0 +1,74 @@
+<?php
+$bootstrap2_csspath = "/public/bootstrap/css/";
+$b3_dist_csspath = "/public/bootstrap3/dist/css/";
+$js_path = "/public/js/";
+$b3_cssfiles = array($b3_dist_csspath."bootstrap.min.css");
+$jsfiles = array("jquery.js","angular.js");
+?>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">    
+    <title>SKYDPK</title>    
+    <?php 
+    foreach ($b3_cssfiles as $value) {
+      echo $this->headLink()->appendStylesheet($value);
+    }
+    foreach ($jsfiles as $value) {
+      echo $this->headScript()->appendFile($js_path.$value);
+    }
+    ?>
+    <?php echo $this->headLink()->appendStylesheet($this->signin_css); ?>
+    <?php echo $this->headScript()->appendFile($this->signin_js); ?>
+  </head>
+  <style>
+      #dv1{
+          border:1px solid #DBDCE9; margin-left:auto;
+          margin-right:auto;width:360px;
+          border-radius:7px;padding: 25px;
+      }
+
+      .info{
+          width:274px;
+          border: 1px solid;  margin-left: -38px;
+          padding:10px;color: #00529B;
+          background-color: #BDE5F8;list-style: none;
+      }
+      .err{
+          width:274px;
+          border: 1px solid;  margin-left: -38px;
+          padding:10px;  color: #D8000C;
+          background-color: #FFBABA;   list-style: none;
+      }
+  </style>
+  <body>    
+    <div class="container" id="dv1" ng-controller="signinController">
+      
+      <form role="form" class="form-signin ">
+        <input type="text" ng-model="baseurl" style="display: none;" value="<?php echo $this->baseurl;?>">
+        <div id="legend">
+          <legend>Login</legend>
+        </div>
+        <ul>
+            <li class="err" ng-repeat="error in errors"> {{ error}} </li>
+        </ul>
+        <ul>
+            <li class="info" ng-repeat="msg in msgs"> {{ msg}} </li>
+        </ul>
+        <div class="form-group">
+        <input type="text" ng-model='username' autofocus="" required="" placeholder="Username" class="form-control">
+
+        </div>
+        <div class="form-group">
+          <input type="password" ng-model='pwd' required="" placeholder="Password" class="form-control"> 
+        </div>      
+        <div class="form-group">
+        <button type="submit" ng-click="login()" class="btn btn-lg btn-primary btn-block" style="font-family: Arial,sans-serif;">Sign in</button>
+      </div>
+      </form>
+    </div>
+</body>
+</html>

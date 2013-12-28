@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8">        
+    <link href="//mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.css" rel="stylesheet">
+    <!-- required libraries -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>    
+    <script src="//mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.js"></script>
+    </head>  
+    <body>
+    <div class="container">
+      <section id="datepicker">        
+        <div class="bs-docs-example">          
+            <form id="frmreminder" class="form-horizontal well" method="post" action="/public/reminder/add">
+            <div class="form-group">
+          <label for="rtask">Task</label>
+          <input type="text" class="form-control" id="rtask" name="rtask" required placeholder="Enter Task"  autocomplete="off">
+        </div>
+        <div class="form-group control-group input-append">
+          <label for="inputDatepicker" style="margin-right:6px;">Date</label>
+          <input id="tdate" name="tdate" class="input-small" type="text" data-date-format="dd/mm/yyyy"   bs-datepicker required value="<?=date('d/m/Y')?>">          
+        </div>
+        <div>
+          <button type="button" onclick="return addReminder()" class="form-group">Submit</button>
+        </div>
+      </section>
+    </div>
+    </form>
+    </body>
+  
+<script type="text/javascript">
+$("#tdate").datepicker();
+function addReminder(){
+	var data = $("#frmreminder").serialize();
+	url="/public/reminder/add";
+	$.post(url,data,function(data){
+    alert("Record Added");
+	});
+	return false;
+}
+</script>
+</html>

@@ -1,0 +1,35 @@
+<?php 
+$mdashboard = "dashboard ".$this->dashboard;
+$mitems = "items ".$this->items;
+$mcnews = "cnews ".$this->cnews;
+$mexpenditure = "expenditure ".$this->expenditure;
+$mreminder = "reminder ".$this->reminder;
+$menus  = array(
+          $mdashboard => "Dashboard",
+          $mcnews => "News",
+          $mitems => "Items",
+          $mexpenditure => "Expenditure",
+          $mreminder => "Reminder"
+        );
+$link = array();
+$link[$mdashboard] = "/public/dashboard";
+$link[$mcnews] = "/public/cnews";
+$link[$mitems] = "/public/ebay";
+$link[$mexpenditure] = "/public/expenditure";
+$link[$mreminder] = "/public/reminder";
+?>
+<div class="container" style="padding:5px;">
+  <!-- Static navbar -->
+  <div class="navbar navbar-default">        
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+      <?php foreach($menus as $class=>$value):?>
+        <li class="<?=$class;?>" ><a href="<?=$link[$class]?>"><?=$value?></a></li>
+      <?php endforeach;?>                
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/public/logout">Logout</a></li>            
+      </ul>
+    </div>
+  </div>
+</div> 
